@@ -10,6 +10,8 @@ public class TnbDao {
 
   String name;
 
+  Boolean isTnb;
+
   public String getTnb() {
     return tnb;
   }
@@ -24,5 +26,13 @@ public class TnbDao {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public Boolean getIsTnb() {
+    return isTnb;
+  }
+
+  public void setIsTnb(Boolean isTnb) {
+    this.isTnb = isTnb;
   }
 }

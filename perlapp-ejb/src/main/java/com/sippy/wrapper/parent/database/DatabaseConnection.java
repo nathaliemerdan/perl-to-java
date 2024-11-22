@@ -25,4 +25,9 @@ public class DatabaseConnection {
     Query query = entityManager.createNativeQuery("SELECT * FROM tnbs", TnbDao.class);
     return query.getResultList();
   }
+
+  public TnbDao getTnbById(int id) {
+    Query query = entityManager.createNativeQuery("SELECT tnb FROM tnbs WHERE tnb = ?", id);
+    return query.getResultList();
+  }
 }

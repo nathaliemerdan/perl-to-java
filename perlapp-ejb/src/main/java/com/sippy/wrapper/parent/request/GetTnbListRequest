@@ -1,0 +1,14 @@
+package com.sippy.wrapper.parent.request;
+
+public class GetTnbListRequest {
+  String number;
+
+  public String getNumber() {
+    return name;
+  }
+
+  public void setNumber(String name) {
+    this.name = name;
+  }
+
+}
