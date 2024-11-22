@@ -64,7 +64,7 @@ public class WrappedMethods {
             filteredTnbs.add(telekom);
 
             for (TnbDao tnb : allTnbs) {
-                if (List.of("D146", "D218", "D248").contains(tnb.getTnb())) {
+                if (tnb.getTnb().matches("(D146|D218|D248)")) {
                     continue;
                 } 
 
