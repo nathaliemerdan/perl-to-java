@@ -1,11 +1,17 @@
 package com.sippy.wrapper.parent.database;
 
-import com.sippy.wrapper.parent.database.dao.TnbDao;
 import java.util.List;
+
 import javax.ejb.Stateless;
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.sippy.wrapper.parent.database.dao.TnbDao;
 
 @Stateless
 public class DatabaseConnection {
@@ -27,7 +33,13 @@ public class DatabaseConnection {
   }
 
   public TnbDao getTnbById(int id) {
-    Query query = entityManager.createNativeQuery("SELECT tnb FROM tnbs WHERE tnb = ?", id);
-    return query.getResultList();
+    Query query = entityManager.createNativeQuery("SELECT tnb FROM tnbs WHERE tnb = :id", TnbDao.class);
+    query.setParameter("id", id);
+    
+    try {
+        return (TnbDao) query.getSingleResult();
+    } catch (NoResultException e) {
+        throw new NoResultException("No such tnb with id: " + id);
+    }
   }
 }
